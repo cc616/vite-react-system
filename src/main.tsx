@@ -11,17 +11,15 @@ import Authorized from '@/components/authorized'
 import App from './app'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <HashRouter>
-      <Switch>
-        <Route path="/login" exact>
-          <Login />
-        </Route>
-        <Authorized path="/">
-          <App />
-        </Authorized>
-      </Switch>
-    </HashRouter>
-  </React.StrictMode>,
+  <HashRouter>
+    <Switch>
+      <Route path="/login" exact>
+        <Login />
+      </Route>
+      <Authorized path="/">
+        <App />
+      </Authorized>
+    </Switch>
+  </HashRouter>,
   document.getElementById('root')
 )
