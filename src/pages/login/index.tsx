@@ -1,22 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input } from 'antd';
 
-import logo from '@/assets/favicon.svg'
-import { setLocalStorage } from '@/utils/localStorage'
-import { ILogin } from '@/typing/login'
+import logo from '@/assets/favicon.svg';
+import { ILogin } from '@/typing/login';
+import { useLoginActions } from '@/actions/login';
 
-import styles from './index.module.less'
+import styles from './index.module.less';
 
-const Login = () => {
+const Login = (): JSX.Element => {
+  const loginAction = useLoginActions();
 
-  const handleLogin = ({ username }: ILogin) => {
-    if (username === 'admin') {
-
-    }
-
-    setLocalStorage('token', 'token');
-  }
+  const handleLogin = (values: ILogin) => {
+    loginAction.login(values);
+  };
 
   return (
     <div className={styles.container}>
@@ -29,30 +26,24 @@ const Login = () => {
       </div>
       <div className={styles.form}>
         <Form onFinish={handleLogin}>
-          <Form.Item
-            name="username"
-            rules={[{ required: true, message: '用户名不能为空' }]}
-          >
+          <Form.Item name="username" rules={[{ required: true, message: '用户名不能为空' }]}>
             <Input placeholder="用户名：admin or user" />
           </Form.Item>
-          <Form.Item
-            name="password"
-            rules={[{ required: true, message: '密码不能为空' }]}
-          >
+          <Form.Item name="password" rules={[{ required: true, message: '密码不能为空' }]}>
             <Input placeholder="密码：vite.react" />
           </Form.Item>
           <Form.Item>
-            <Button type='primary' className={styles.btn} htmlType="submit">登录</Button>
+            <Button type="primary" className={styles.btn} htmlType="submit">
+              登录
+            </Button>
           </Form.Item>
         </Form>
       </div>
       <div className={styles.footer}>
-        <div>
-          Copyright  2021 后台管理系统体验技术部出品
-        </div>
+        <div>Copyright 2021 后台管理系统体验技术部出品</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

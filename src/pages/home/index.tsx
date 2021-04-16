@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const Home = () => {
-  return (
-    <div> this is home page</div>
-  )
-}
+const Home = (): JSX.Element => {
+  return <div> this is home page</div>;
+};
 
-export default Home
+export default Home;

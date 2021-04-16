@@ -9,4 +9,4 @@ export const ROUTE_PATH = {
   RESULT: '/result',
   EXCEPTION: '/exception',
   ACCOUNT: '/account',
-}
+};

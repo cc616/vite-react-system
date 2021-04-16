@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const Detail = () => {
-  return (
-    <div>
-      detail page
-    </div>
-  )
-}
+const Detail = (): JSX.Element => {
+  return <div>detail page</div>;
+};
 
-export default Detail
+export default Detail;

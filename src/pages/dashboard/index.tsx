@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const Dashboard = () => {
-  return (
-    <div>
-      this is a dashboard page
-    </div>
-  )
-}
+const Dashboard = (): JSX.Element => {
+  return <div>this is a dashboard page</div>;
+};
 
-export default Dashboard
+export default Dashboard;
