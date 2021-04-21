@@ -6,6 +6,7 @@ import { last, first } from 'lodash';
 import { MenuInfo } from 'rc-menu/lib/interface';
 
 import { routes } from '@/routes';
+import Header from './header';
 
 import styles from './index.module.less';
 
@@ -71,18 +72,21 @@ const Layout = (props: IProps): JSX.Element => {
 
   return (
     <div className={styles.layout}>
-      <Menu
-        className={styles.sider}
-        openKeys={openKeys}
-        selectedKeys={[selectedKey]}
-        onOpenChange={handleOpenChange}
-        onClick={handleChange}
-        mode="inline"
-      >
-        {subMenus}
-      </Menu>
+      <div className={styles.sider}>
+        <div className={styles.logo}>logo</div>
+        <Menu
+          className={styles.menus}
+          openKeys={openKeys}
+          selectedKeys={[selectedKey]}
+          onOpenChange={handleOpenChange}
+          onClick={handleChange}
+          mode="inline"
+        >
+          {subMenus}
+        </Menu>
+      </div>
       <div className={styles.container}>
-        <div className={styles.header}>header</div>
+        <Header />
         <div className={styles.content}>{props.children}</div>
       </div>
     </div>

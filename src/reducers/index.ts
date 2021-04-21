@@ -1,9 +1,13 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
-import login from './login'
+import auth, { IAuthState } from './auth';
 
-const reducer = combineReducers({
-  login
-})
+export interface IRootState {
+  auth: IAuthState;
+}
 
-export default reducer
+const reducer = combineReducers<IRootState>({
+  auth,
+});
+
+export default reducer;

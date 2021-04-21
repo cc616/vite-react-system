@@ -3,16 +3,19 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 
 import logo from '@/assets/favicon.svg';
-import { ILogin } from '@/typing/login';
-import { useLoginActions } from '@/actions/login';
+import { ILogin } from '@/typing/auth';
+import { useAuthActions } from '@/actions/auth';
+import { login } from '@/apis/auth';
 
 import styles from './index.module.less';
 
 const Login = (): JSX.Element => {
-  const loginAction = useLoginActions();
+  const authAction = useAuthActions();
 
   const handleLogin = (values: ILogin) => {
-    loginAction.login(values);
+    login(values).then((token) => {
+      authAction.setToken(token);
+    });
   };
 
   return (
@@ -30,7 +33,7 @@ const Login = (): JSX.Element => {
             <Input placeholder="用户名：admin or user" />
           </Form.Item>
           <Form.Item name="password" rules={[{ required: true, message: '密码不能为空' }]}>
-            <Input placeholder="密码：vite.react" />
+            <Input placeholder="密码：vite.react" type="password" />
           </Form.Item>
           <Form.Item>
             <Button type="primary" className={styles.btn} htmlType="submit">

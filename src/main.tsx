@@ -16,9 +16,9 @@ ReactDOM.render(
   <Provider store={store}>
     <HashRouter>
       <Switch>
-        <Route path="/login" exact>
+        <Authorized path="/login" exact>
           <Login />
-        </Route>
+        </Authorized>
         <Authorized path="/">
           <App />
         </Authorized>
