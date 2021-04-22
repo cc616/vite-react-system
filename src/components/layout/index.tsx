@@ -32,7 +32,9 @@ const Layout = (props: IProps): JSX.Element => {
   });
 
   const [selectedKey, setSelectedKey] = useState<string>(() => {
-    return `${first(pathArr)}-${last(pathArr)}`;
+    const lastKey = last(pathArr);
+    const firstKey = last(pathArr) || '';
+    return pathArr.length > 1 ? `${firstKey}-${lastKey}` : firstKey;
   });
 
   const handleOpenChange = useCallback<(openKeys: React.Key[]) => void>((openKeys) => {
@@ -48,24 +50,30 @@ const Layout = (props: IProps): JSX.Element => {
 
   const subMenus = useMemo(() => {
     return routes.map((route) => {
-      const { path, title, children = [] } = route;
+      const { path, title, children = [], exact } = route;
       const pathArr = pathToArr(path);
       const key = first(pathArr);
 
-      return (
+      return !!children.length ? (
         <SubMenu key={key} title={title}>
           {children.map((item) => {
             const itemPathArr = pathToArr(item.path);
             const itemKey = `${key}-${last(itemPathArr)}`;
             return (
               <MenuItem key={itemKey}>
-                <NavLink to={item.path} exact>
+                <NavLink to={item.path} exact={item.exact}>
                   {item.title}
                 </NavLink>
               </MenuItem>
             );
           })}
         </SubMenu>
+      ) : (
+        <MenuItem key={key}>
+          <NavLink to={path} exact={exact}>
+            {title}
+          </NavLink>
+        </MenuItem>
       );
     });
   }, []);

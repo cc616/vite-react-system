@@ -15,15 +15,8 @@ export const routes: IRoute[] = [
   {
     path: ROUTE_PATH.DASHBOARD,
     title: 'Dashboard',
+    component: Dashboard,
     exact: true,
-    children: [
-      {
-        path: ROUTE_PATH.ANALYSIS,
-        component: Dashboard,
-        title: '分析页',
-        exact: true,
-      },
-    ],
   },
   {
     path: ROUTE_PATH.FORM,

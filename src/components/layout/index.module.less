@@ -31,8 +31,34 @@
     background: #00686f;
   }
 
-  :global(.ant-menu-submenu-arrow) {
+  :global(.ant-menu-submenu-title) {
+    &:hover {
+      color: @white-color;
+    }
+  }
+
+  :global(.ant-menu-submenu-selected) {
     color: @white-color;
+  }
+
+  :global(.ant-menu-submenu-arrow) {
+    color: @white-color !important;
+  }
+
+  :global(.ant-menu-item) {
+    width: 100%;
+
+    a {
+      color: @white-color;
+    }
+
+    &::after {
+      border: none;
+    }
+  }
+
+  :global(.ant-menu-item-selected) {
+    background: #08979c !important;
   }
 }
 
