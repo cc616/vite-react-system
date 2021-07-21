@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# regex to validate in commit msg
+error_msg="Aborting commit, your message is missing some error"
+commit_message=$(cat "$1")
+
+validate_commit_msg() {
+  local REGEX='(^feat|fix|docs|style|refactor|chore|perf|test\:)'
+  if [[ ! $commit_message =~ $REGEX ]]; then
+    echo >&2 $error_msg
+    exit 1
+  fi
+}
+
+validate_commit_msg
