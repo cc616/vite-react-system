@@ -33,7 +33,7 @@ const Layout = (props: IProps): JSX.Element => {
 
   const [selectedKey, setSelectedKey] = useState<string>(() => {
     const lastKey = last(pathArr);
-    const firstKey = last(pathArr) || '';
+    const firstKey = first(pathArr) || '';
     return pathArr.length > 1 ? `${firstKey}-${lastKey}` : firstKey;
   });
 
@@ -81,7 +81,7 @@ const Layout = (props: IProps): JSX.Element => {
   return (
     <div className={styles.layout}>
       <div className={styles.sider}>
-        <div className={styles.logo}>logo</div>
+        <div className={styles.logo}>vite react system</div>
         <Menu
           className={styles.menus}
           openKeys={openKeys}
