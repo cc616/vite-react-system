@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Menu, Dropdown } from 'antd';
 
 import { IRootState } from '@/reducers';
+import { useAuthActions } from '@/actions/auth';
 
 import styles from './header.module.less';
 
@@ -11,9 +12,10 @@ const MenuItem = Menu.Item;
 
 const Header = (): JSX.Element => {
   const profile = useSelector(({ auth }: IRootState) => auth.profile);
+  const authAction = useAuthActions();
 
   const handleLogout = () => {
-    console.log(2);
+    authAction.loginOut();
   };
 
   const menu = useMemo(() => {

@@ -2,7 +2,7 @@ import { handleActions, Action } from 'redux-actions';
 
 import { IProfile } from '@/typing/auth';
 import { AUTH_ACTION_TYPES } from '@/actions/auth';
-import { setLocalStorage, getLocalStorage } from '@/utils/localStorage';
+import { setLocalStorage, getLocalStorage, removeLocalStorage } from '@/utils/localStorage';
 import { ACCESS_TOKEN } from '@/constants/localStorage';
 
 export interface IAuthState {
@@ -31,6 +31,13 @@ const authReducer = handleActions<IAuthState, any>(
       return {
         ...state,
         profile: action.payload,
+      };
+    },
+    [AUTH_ACTION_TYPES.LOGIN_OUT]: (state) => {
+      removeLocalStorage(ACCESS_TOKEN);
+      return {
+        ...state,
+        token: null,
       };
     },
   },

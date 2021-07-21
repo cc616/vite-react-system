@@ -3,11 +3,12 @@
 .layout {
   display: flex;
   min-height: 100vh;
+  background-color: #f5f5f5;
 }
 
 .sider {
   width: @layout-nav-sidebar-width;
-  background: #006d75;
+  background: #002b3b;
 }
 
 .logo {
@@ -20,7 +21,7 @@
 }
 
 .menus {
-  background: #006d75;
+  background: #002b3b;
   color: @white-color;
 
   &:global(.ant-menu-inline) {
@@ -28,7 +29,7 @@
   }
 
   :global(.ant-menu-sub) {
-    background: #00686f;
+    background: #002533;
   }
 
   :global(.ant-menu-submenu-title) {
@@ -58,10 +59,19 @@
   }
 
   :global(.ant-menu-item-selected) {
-    background: #08979c !important;
+    background: #013548 !important;
   }
 }
 
 .container {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  margin: @margin-lg;
+  padding: @padding-md;
+  background-color: @white-color;
 }
