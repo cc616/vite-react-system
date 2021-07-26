@@ -17,12 +17,15 @@ const isAuthorized = (token) => {
   return token === mockToken;
 }
 
+let role
+
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
 
 server.use((req, res, next) => {
   if (req.url === '/api/user/login') {
     const { username, password } = req.body
+    role = username.toLocaleUpperCase()
     if ((username === 'admin' || username === 'user') && password === 'vite.react') {
       return res.jsonp({
         code: "SUCCESS",
@@ -39,6 +42,15 @@ server.use((req, res, next) => {
       message: 'unauthorized'
     });
   }
+
+  if (req.url === '/api/user/profile') {
+    return res.jsonp({
+      code: "SUCCESS",
+      data: { username: '吴彦祖', role, id: '1111', position: '高级搬砖专家' },
+      message: "success",
+    });
+  }
+
   next();
 })
 
@@ -54,7 +66,6 @@ server.use(jsonServer.rewriter(
   {
     "/api/": "/",
     "/api/user/list": "/api/userList",
-    "/api/user/profile": "/api/profile",
   }
 ));
 server.use('/api', router);

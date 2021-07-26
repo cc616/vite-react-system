@@ -9,4 +9,5 @@ export interface IProfile {
   id: string;
   username: string;
   role: ROLE;
+  position: string;
 }

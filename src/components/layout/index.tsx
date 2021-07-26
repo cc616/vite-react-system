@@ -14,7 +14,7 @@ const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
 interface IProps {
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 const pathToArr = (path: string) => {

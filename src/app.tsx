@@ -12,29 +12,25 @@ import { useAuthActions } from '@/actions/auth';
 import { routes } from './routes';
 
 const App = (): JSX.Element => {
-  const authState = useSelector(({ auth }: IRootState) => auth);
+  const { token } = useSelector(({ auth }: IRootState) => auth);
   const authActions = useAuthActions();
 
   useEffect(() => {
-    if (!authState.profile) {
+    if (token) {
       getProfile()
         .then((profile) => {
           authActions.setProfile(profile);
         })
-        .catch(() => {
-          console.log('error');
+        .catch((error) => {
+          console.log(error);
         });
     }
-  }, []);
+  }, [token]);
 
   const router = useMemo(() => {
     return getAllFlattenRoutes(routes)
       .filter((route) => !!route.component)
-      .map((route, index) => (
-        <Route key={index} path={route.path} exact={route.exact}>
-          {route.component}
-        </Route>
-      ));
+      .map((route, index) => <Route key={index} path={route.path} exact={route.exact} component={route.component} />);
   }, []);
 
   return (

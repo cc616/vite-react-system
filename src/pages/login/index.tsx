@@ -6,7 +6,6 @@ import logo from '@/assets/favicon.svg';
 import { ILogin } from '@/typing/auth';
 import { useAuthActions } from '@/actions/auth';
 import { login } from '@/apis/auth';
-import { ROLE } from '@/constants/auth';
 
 import styles from './index.module.less';
 
@@ -18,7 +17,7 @@ const Login = (): JSX.Element => {
     setLoading(true);
     login(values)
       .then((token) => {
-        authAction.setToken({ token, role: values.username.toLocaleUpperCase() as ROLE });
+        authAction.setToken(token);
       })
       .catch(() => {
         message.error('账号密码错误');

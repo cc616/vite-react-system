@@ -1,6 +1,5 @@
 const Mock = require('mockjs');
 const userList = require('./user/index.js');
-const profile = require('./user/profile.js');
 
 const data1 = Mock.mock({
   'id1|+1': 0,
