@@ -95,7 +95,7 @@ const Layout = (props: IProps): JSX.Element => {
       </div>
       <div className={styles.container}>
         <Header />
-        <div className={styles.content}>{props.children}</div>
+        {props.children}
       </div>
     </div>
   );

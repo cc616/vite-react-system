@@ -1,0 +1,11 @@
+export enum HTTP_STATUS {
+  UNAUTHORIZED = 401,
+  BAD_REQUEST = 400,
+  INTERNAL_SERVER_ERROR = 500,
+}
+
+export const HTTP_STATUS_MAP: { [key in HTTP_STATUS]: string } = {
+  [HTTP_STATUS.UNAUTHORIZED]: '未登录',
+  [HTTP_STATUS.BAD_REQUEST]: '系统错误，请稍后重试',
+  [HTTP_STATUS.INTERNAL_SERVER_ERROR]: '网络错误，请稍后重试',
+};

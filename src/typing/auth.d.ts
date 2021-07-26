@@ -6,6 +6,7 @@ export interface ILogin {
 }
 
 export interface IProfile {
+  id: string;
   username: string;
-  roles: ROLE[];
+  role: ROLE;
 }

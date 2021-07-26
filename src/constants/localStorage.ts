@@ -1,2 +1,2 @@
 export const ACCESS_TOKEN = 'access_token';
-export const PROFILE = 'profile';
+export const USER_ROLE = 'role';

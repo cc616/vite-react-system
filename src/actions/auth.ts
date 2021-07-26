@@ -3,17 +3,20 @@ import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 import { IProfile } from '@/typing/auth';
+import { ROLE } from '@/constants/auth';
 
 export enum AUTH_ACTION_TYPES {
   SET_TOKEN = 'SET_TOKEN',
   SET_PROFILE = 'SET_PROFILE',
-  LOGIN_OUT = 'LOGIN_OUT',
+  CLEAR_TOKEN = 'CLEAR_TOKEN',
 }
 
+export const clearToken = createAction(AUTH_ACTION_TYPES.CLEAR_TOKEN);
+
 const authActions = {
-  setToken: createAction<string>(AUTH_ACTION_TYPES.SET_TOKEN),
+  setToken: createAction<{ token: string; role: ROLE }>(AUTH_ACTION_TYPES.SET_TOKEN),
   setProfile: createAction<IProfile>(AUTH_ACTION_TYPES.SET_PROFILE),
-  loginOut: createAction(AUTH_ACTION_TYPES.LOGIN_OUT),
+  clearToken: clearToken,
 };
 
 export const useAuthActions = (): typeof authActions => {

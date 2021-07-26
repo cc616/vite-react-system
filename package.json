@@ -5,12 +5,17 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
+    "server": "node mock/index.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
     "antd": "^4.14.1",
+    "axios": "^0.21.1",
+    "classnames": "^2.3.1",
     "eslint-plugin-react": "^7.23.2",
+    "json-server": "^0.16.3",
     "lodash": "^4.17.21",
+    "mockjs": "^1.1.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-redux": "^7.2.3",

@@ -15,7 +15,7 @@ const Header = (): JSX.Element => {
   const authAction = useAuthActions();
 
   const handleLogout = () => {
-    authAction.loginOut();
+    authAction.clearToken();
   };
 
   const menu = useMemo(() => {

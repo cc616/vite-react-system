@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 
 import logo from '@/assets/favicon.svg';
 import { ILogin } from '@/typing/auth';
 import { useAuthActions } from '@/actions/auth';
 import { login } from '@/apis/auth';
+import { ROLE } from '@/constants/auth';
 
 import styles from './index.module.less';
 
 const Login = (): JSX.Element => {
   const authAction = useAuthActions();
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = (values: ILogin) => {
-    login(values).then((token) => {
-      authAction.setToken(token);
-    });
+    setLoading(true);
+    login(values)
+      .then((token) => {
+        authAction.setToken({ token, role: values.username.toLocaleUpperCase() as ROLE });
+      })
+      .catch(() => {
+        message.error('账号密码错误');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -36,7 +46,7 @@ const Login = (): JSX.Element => {
             <Input placeholder="密码：vite.react" type="password" />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" className={styles.btn} htmlType="submit">
+            <Button type="primary" loading={loading} className={styles.btn} htmlType="submit">
               登录
             </Button>
           </Form.Item>
