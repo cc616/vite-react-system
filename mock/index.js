@@ -66,6 +66,7 @@ server.use(jsonServer.rewriter(
   {
     "/api/": "/",
     "/api/user/list": "/api/userList",
+    "/api/project": "/api/project",
   }
 ));
 server.use('/api', router);

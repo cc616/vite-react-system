@@ -1,17 +1,10 @@
-const Mock = require('mockjs');
 const userList = require('./user/index.js');
-
-const data1 = Mock.mock({
-  'id1|+1': 0,
-});
-
-const data2 = Mock.mock({
-  'id2|+1': 0,
-});
+const project = require('./project/index.js');
 
 module.exports = function () {
   const api = {
-    userList
+    userList,
+    project
   };
   return api;
 };
