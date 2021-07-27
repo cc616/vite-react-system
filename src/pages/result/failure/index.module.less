@@ -1,0 +1,26 @@
+@import "@/styles/variable.less";
+
+.title {
+  margin-bottom: @margin-md;
+  color: @text-title-color;
+  font-weight: 500;
+  font-size: @font-size-lg;
+}
+
+.desc {
+  color: @text-title-color;
+
+  & + .desc {
+    margin-top: @margin-md;
+  }
+
+  a {
+    margin-left: @margin-md;
+    color: @primary-color;
+  }
+}
+
+.icon {
+  color: @error-color;
+  margin-right: @margin-xs;
+}

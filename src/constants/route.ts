@@ -7,6 +7,8 @@ export const ROUTE_PATH = {
   LIST: '/list',
   DETAIL: '/detail',
   RESULT: '/result',
+  RESULT_SUCCESS: '/result/success',
+  RESULT_FAILURE: '/result/failure',
   EXCEPTION: '/exception',
   EXCEPTION403: '/exception/403',
   EXCEPTION404: '/exception/404',

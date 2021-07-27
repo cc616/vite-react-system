@@ -5,8 +5,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "server": "node mock/index.js",
-    "start": "yarn dev & yarn server",
+    "service": "node mock/index.js",
+    "start": "yarn dev & yarn service",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
