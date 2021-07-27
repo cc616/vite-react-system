@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { ACCESS_TOKEN } from '@/constants/localStorage';
 import { getLocalStorage } from '@/utils/localStorage';
@@ -29,7 +30,10 @@ class Http {
         return data.data;
       },
       (error: AxiosError) => {
-        const { data, status } = error.response || { status: 5000 };
+        if (error.message === 'Network Error') {
+          // TODO: cancel
+        }
+        const { data, status } = error.response || { status: 500 };
         if (status === HTTP_STATUS.UNAUTHORIZED) {
           store.dispatch(clearToken());
         }
@@ -40,6 +44,9 @@ class Http {
           code,
           message: errorMsg,
         };
+        if (status === HTTP_STATUS.INTERNAL_SERVER_ERROR) {
+          message.error(errorMsg);
+        }
         return Promise.reject(newError);
       },
     );

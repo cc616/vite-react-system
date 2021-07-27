@@ -1,5 +1,3 @@
-const Mock = require('mockjs')
-
 module.exports = [{
   id: '1',
   name: '张三',

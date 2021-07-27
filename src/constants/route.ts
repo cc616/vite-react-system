@@ -8,5 +8,8 @@ export const ROUTE_PATH = {
   DETAIL: '/detail',
   RESULT: '/result',
   EXCEPTION: '/exception',
+  EXCEPTION403: '/exception/403',
+  EXCEPTION404: '/exception/404',
+  EXCEPTION500: '/exception/500',
   ACCOUNT: '/account',
 };
