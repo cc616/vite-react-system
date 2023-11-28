@@ -4,21 +4,17 @@ import { Button, Form, Input, message } from 'antd';
 
 import logo from '@/assets/favicon.svg';
 import { ILogin } from '@/typing/auth';
-import { useAuthActions } from '@/actions/auth';
-import { login } from '@/apis/auth';
 
 import styles from './index.module.less';
+import useAuthStore from '@/store/auth';
 
 const Login = (): JSX.Element => {
-  const authAction = useAuthActions();
   const [loading, setLoading] = useState(false);
+  const { login } = useAuthStore();
 
   const handleLogin = (values: ILogin) => {
     setLoading(true);
     login(values)
-      .then((token) => {
-        authAction.setToken(token);
-      })
       .catch(() => {
         message.error('账号密码错误');
       })

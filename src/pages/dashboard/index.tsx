@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { Card, Row, Col, Avatar } from 'antd';
 
 import Header from '@/components/header';
 import Content from '@/components/content';
 import UserLogo from '@/assets/user.png';
-import { IRootState } from '@/reducers';
 import { getProjects } from '@/apis/project';
 import { IProject } from '@/typing/project';
 import { TEAM, TEAM_PROJECT_NAME_MAP, TEAM_NAME_MAP } from '@/constants/team';
@@ -18,6 +16,7 @@ import BootstrapLogo from '@/assets/team/bootstrap.png';
 import ViteLogo from '@/assets/team/vite.png';
 
 import styles from './index.module.less';
+import useAuthStore from '@/store/auth';
 
 const TEAM_AVATAR_MAP = {
   [TEAM.REACT]: ReactLogo,
@@ -29,7 +28,7 @@ const TEAM_AVATAR_MAP = {
 };
 
 const Dashboard = (): JSX.Element => {
-  const { profile } = useSelector(({ auth }: IRootState) => auth);
+  const { profile } = useAuthStore();
   const [projects, setProjects] = useState<IProject[]>([]);
 
   useEffect(() => {

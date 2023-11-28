@@ -3,8 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } f
 import { ACCESS_TOKEN } from '@/constants/localStorage';
 import { getLocalStorage } from '@/utils/localStorage';
 import { HTTP_STATUS, HTTP_STATUS_MAP } from '@/constants/http';
-import { clearToken } from '@/actions/auth';
-import store from '@/store';
+import useAuthStore from '@/store/auth';
 
 const TIMEOUT = 30000;
 const BASE_URL = 'http://0.0.0.0:3001/api';
@@ -35,7 +34,8 @@ class Http {
         }
         const { data, status } = error.response || { status: 500 };
         if (status === HTTP_STATUS.UNAUTHORIZED) {
-          store.dispatch(clearToken());
+          const { logout } = useAuthStore.getState();
+          logout();
         }
         const { code } = data || {};
         const errorMsg = HTTP_STATUS_MAP[status as HTTP_STATUS] || '系统错误，请稍后重试';
@@ -52,11 +52,11 @@ class Http {
     );
   }
 
-  public get<T = any>(url: string, params?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+  public get<T = unknown>(url: string, params?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.http.get(url, { params, ...config });
   }
 
-  public post<T = any>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+  public post<T = unknown>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.http.post(url, data, config);
   }
 }

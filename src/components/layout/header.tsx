@@ -1,21 +1,17 @@
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
 
 import { Menu, Dropdown } from 'antd';
 
-import { IRootState } from '@/reducers';
-import { useAuthActions } from '@/actions/auth';
-
 import styles from './header.module.less';
+import useAuthStore from '@/store/auth';
 
 const MenuItem = Menu.Item;
 
 const Header = (): JSX.Element => {
-  const profile = useSelector(({ auth }: IRootState) => auth.profile);
-  const authAction = useAuthActions();
+  const { profile, logout } = useAuthStore();
 
   const handleLogout = () => {
-    authAction.clearToken();
+    logout();
   };
 
   const menu = useMemo(() => {

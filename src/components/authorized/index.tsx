@@ -1,18 +1,15 @@
 import React, { useMemo } from 'react';
 import { Route, RouteProps, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-import { IRootState } from '@/reducers';
 import { ROUTE_PATH } from '@/constants/route';
+import useAuthStore from '@/store/auth';
 
 type IProps = Omit<RouteProps, 'render'>;
 
 const Authorized = ({ children, ...rest }: IProps): JSX.Element => {
-  const authState = useSelector(({ auth }: IRootState) => auth);
+  const { token } = useAuthStore();
 
-  const isLogin = useMemo(() => {
-    return !!authState.token;
-  }, [authState]);
+  const isLogin = useMemo(() => !!token, [token]);
 
   return (
     <Route
