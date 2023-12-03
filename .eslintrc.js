@@ -14,5 +14,7 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   ignorePatterns: ['.eslintrc.js', 'mock/*'],
-  rules: {},
+  rules: {
+    'react/display-name': 'off',
+  },
 };
