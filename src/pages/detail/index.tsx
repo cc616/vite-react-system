@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Content from '@/components/content';
 import { Button, Select, Space, Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
@@ -52,7 +50,7 @@ const data: DataType[] = [
   },
 ];
 
-const Detail = (): JSX.Element => {
+const Detail = () => {
   const columns: ColumnsType<DataType> = [
     {
       title: 'Name',

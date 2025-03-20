@@ -1,24 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { HashRouter, Switch } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import 'antd/dist/antd.less';
 import '@/styles/index.less';
 
+import App from './app';
 import Login from '@/pages/login';
 import Authorized from '@/components/authorized';
-import App from './app';
 
-ReactDOM.render(
-  <HashRouter>
-    <Switch>
-      <Authorized path="/login" exact>
-        <Login />
-      </Authorized>
-      <Authorized path="/">
-        <App />
-      </Authorized>
-    </Switch>
-  </HashRouter>,
-  document.getElementById('root'),
+const root = createRoot(document.getElementById('root') as HTMLElement);
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route element={<Authorized />}>
+          <Route path="/*" element={<App />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>,
 );

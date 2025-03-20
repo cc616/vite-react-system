@@ -11,8 +11,7 @@ import Exception500 from '@/pages/exception/500';
 export interface IRoute {
   title: string;
   path: string;
-  component?: React.FunctionComponent;
-  exact: boolean;
+  element?: React.FunctionComponent | React.ReactNode;
   children?: IRoute[];
 }
 
@@ -20,63 +19,53 @@ export const routes: IRoute[] = [
   {
     path: ROUTE_PATH.DASHBOARD,
     title: 'Dashboard',
-    component: Dashboard,
-    exact: true,
+    element: <Dashboard />,
   },
   {
     path: ROUTE_PATH.FORM,
-    exact: true,
     title: '表单页',
     children: [
       {
         path: ROUTE_PATH.BASIC_FORM,
-        component: Detail,
+        element: <Detail />,
         title: '基础表单',
-        exact: true,
       },
     ],
   },
   {
     path: ROUTE_PATH.RESULT,
-    exact: true,
     title: '结果页',
     children: [
       {
         path: ROUTE_PATH.RESULT_SUCCESS,
-        component: ResultSuccess,
+        element: <ResultSuccess />,
         title: '成功页',
-        exact: true,
       },
       {
         path: ROUTE_PATH.RESULT_FAILURE,
-        component: ResultFailure,
+        element: <ResultFailure />,
         title: '失败页',
-        exact: true,
       },
     ],
   },
   {
     path: ROUTE_PATH.EXCEPTION,
-    exact: true,
     title: '异常页',
     children: [
       {
         path: ROUTE_PATH.EXCEPTION403,
-        component: Exception403,
+        element: <Exception403 />,
         title: '403',
-        exact: true,
       },
       {
         path: ROUTE_PATH.EXCEPTION404,
-        component: Exception404,
+        element: <Exception404 />,
         title: '404',
-        exact: true,
       },
       {
         path: ROUTE_PATH.EXCEPTION500,
-        component: Exception500,
+        element: <Exception500 />,
         title: '500',
-        exact: true,
       },
     ],
   },

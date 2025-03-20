@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styles from './index.module.less';
 
 interface IProps {
@@ -7,7 +5,7 @@ interface IProps {
   children?: React.ReactNode;
 }
 
-const Header = ({ title, children }: IProps): JSX.Element => {
+const Header = ({ title, children }: IProps) => {
   return (
     <div className={styles.header}>
       <div className={styles.title}>{title}</div>

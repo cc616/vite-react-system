@@ -16,5 +16,6 @@ module.exports = {
   ignorePatterns: ['.eslintrc.js', 'mock/*'],
   rules: {
     'react/display-name': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
 };

@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { Button, Result } from 'antd';
 
-const Exception403 = (): JSX.Element => {
+const Exception403 = () => {
   return (
     <div>
       <Result

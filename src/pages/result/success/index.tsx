@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Result, Button, Descriptions, Steps } from 'antd';
 import { DingdingOutlined } from '@ant-design/icons';
 
@@ -7,7 +5,7 @@ import Content from '@/components/content';
 
 import styles from './index.module.less';
 
-const Success = (): JSX.Element => {
+const Success = () => {
   return (
     <Content bgWhite>
       <Result

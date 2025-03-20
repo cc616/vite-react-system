@@ -1,5 +1,3 @@
-import React from 'react';
-
 import cls from 'classnames';
 
 import styles from './index.module.less';
@@ -10,7 +8,7 @@ interface IProps {
   className?: string;
 }
 
-const Content = ({ children, bgWhite = false, className }: IProps): JSX.Element => {
+const Content = ({ children, bgWhite = false, className }: IProps) => {
   return <div className={cls(styles.content, { [styles.white]: bgWhite }, className)}>{children}</div>;
 };
 

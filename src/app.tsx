@@ -1,33 +1,24 @@
-import React, { useEffect, useMemo } from 'react';
-import { Route, Switch } from 'react-router-dom';
-
 import Layout from '@/components/layout';
-
-import { getAllFlattenRoutes } from '@/utils/navigation';
-
+import { useRoutes, Navigate } from 'react-router-dom';
+import { ROUTE_PATH } from './constants/route'
 import { routes } from './routes';
-import useAuthStore from './store/auth';
 
-const App = (): JSX.Element => {
-  const { token, getProfile } = useAuthStore();
 
-  useEffect(() => {
-    if (token) {
-      getProfile();
-    }
-  }, [token]);
+const allRoutes: any[] =[
+  {
+    path: "/",
+    element: <Navigate to={ROUTE_PATH.DASHBOARD} replace />,
+  },
+  {
+    path: "/",
+    element: <Layout />,
+    children: routes,
+  },
+];
 
-  const router = useMemo(() => {
-    return getAllFlattenRoutes(routes)
-      .filter((route) => !!route.component)
-      .map((route, index) => <Route key={index} path={route.path} exact={route.exact} component={route.component} />);
-  }, []);
-
-  return (
-    <Layout>
-      <Switch>{router}</Switch>
-    </Layout>
-  );
+const App = () => {
+  const element = useRoutes(allRoutes);
+  return <>{element}</>;
 };
 
 export default App;

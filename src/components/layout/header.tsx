@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { Menu, Dropdown } from 'antd';
 
@@ -7,7 +7,7 @@ import useAuthStore from '@/store/auth';
 
 const MenuItem = Menu.Item;
 
-const Header = (): JSX.Element => {
+const Header = () => {
   const { profile, logout } = useAuthStore();
 
   const handleLogout = () => {

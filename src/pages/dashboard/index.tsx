@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Card, Row, Col, Avatar } from 'antd';
 
@@ -27,7 +27,7 @@ const TEAM_AVATAR_MAP = {
   [TEAM.VITE_PRO]: ViteLogo,
 };
 
-const Dashboard = (): JSX.Element => {
+const Dashboard = () => {
   const { profile } = useAuthStore();
   const [projects, setProjects] = useState<IProject[]>([]);
 

@@ -1,7 +1,7 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { Menu } from 'antd';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { last, first } from 'lodash';
 import { MenuInfo } from 'rc-menu/lib/interface';
 
@@ -13,15 +13,11 @@ import styles from './index.module.less';
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
-interface IProps {
-  children: React.ReactNode;
-}
-
 const pathToArr = (path: string) => {
   return path.split('/').filter((item) => !!item);
 };
 
-const Layout = (props: IProps): JSX.Element => {
+const Layout = () => {
   const location = useLocation();
   const { pathname } = location;
   const pathArr = pathToArr(pathname);
@@ -50,7 +46,7 @@ const Layout = (props: IProps): JSX.Element => {
 
   const subMenus = useMemo(() => {
     return routes.map((route) => {
-      const { path, title, children = [], exact } = route;
+      const { path, title, children = [] } = route;
       const pathArr = pathToArr(path);
       const key = first(pathArr);
 
@@ -61,7 +57,7 @@ const Layout = (props: IProps): JSX.Element => {
             const itemKey = `${key}-${last(itemPathArr)}`;
             return (
               <MenuItem key={itemKey}>
-                <NavLink to={item.path} exact={item.exact}>
+                <NavLink to={item.path}>
                   {item.title}
                 </NavLink>
               </MenuItem>
@@ -70,7 +66,7 @@ const Layout = (props: IProps): JSX.Element => {
         </SubMenu>
       ) : (
         <MenuItem key={key}>
-          <NavLink to={path} exact={exact}>
+          <NavLink to={path}>
             {title}
           </NavLink>
         </MenuItem>
@@ -95,7 +91,7 @@ const Layout = (props: IProps): JSX.Element => {
       </div>
       <div className={styles.container}>
         <Header />
-        {props.children}
+        <Outlet />
       </div>
     </div>
   );

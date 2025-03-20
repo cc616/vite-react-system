@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Button, Form, Input, message } from 'antd';
 
@@ -8,7 +8,7 @@ import { ILogin } from '@/typing/auth';
 import styles from './index.module.less';
 import useAuthStore from '@/store/auth';
 
-const Login = (): JSX.Element => {
+const Login = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuthStore();
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Result, Button } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 
@@ -7,7 +5,7 @@ import Content from '@/components/content';
 
 import styles from './index.module.less';
 
-const Failure = (): JSX.Element => {
+const Failure = () => {
   return (
     <Content bgWhite>
       <Result
