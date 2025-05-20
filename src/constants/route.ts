@@ -2,6 +2,7 @@ export const ROUTE_PATH = {
   LOGIN: '/login',
   DASHBOARD: '/dashboard',
   ANALYSIS: '/dashboard/analysis',
+  WORKPLACE: '/dashboard/workplace',
   FORM: '/form',
   BASIC_FORM: '/form/basic-form',
   LIST: '/list',

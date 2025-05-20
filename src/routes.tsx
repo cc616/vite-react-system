@@ -1,5 +1,6 @@
 import { ROUTE_PATH } from '@/constants/route';
-import Dashboard from '@/pages/dashboard';
+import Workplace from '@/pages/dashboard/workplace';
+import Analysis from '@/pages/dashboard/analysis';
 import Detail from '@/pages/detail';
 import Exception403 from '@/pages/exception/403';
 import Exception404 from '@/pages/exception/404';
@@ -18,7 +19,18 @@ export const routes: IRoute[] = [
   {
     path: ROUTE_PATH.DASHBOARD,
     title: 'Dashboard',
-    element: <Dashboard />,
+    children: [
+      {
+        path: ROUTE_PATH.ANALYSIS,
+        element: <Analysis />,
+        title: '分析页',
+      },
+      {
+        path: ROUTE_PATH.WORKPLACE,
+        element: <Workplace />,
+        title: '工作台',
+      },
+    ],
   },
   {
     path: ROUTE_PATH.FORM,

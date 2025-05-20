@@ -26,7 +26,7 @@ const TEAM_AVATAR_MAP = {
   [TEAM.VITE_PRO]: ViteLogo,
 };
 
-const Dashboard = () => {
+const Workplace = () => {
   const { profile } = useAuthStore();
   const [projects, setProjects] = useState<IProject[]>([]);
   const { getProjects } = useProjectStore();
@@ -90,4 +90,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Workplace;
