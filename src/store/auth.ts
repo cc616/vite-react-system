@@ -2,9 +2,9 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
 import { getProfile, login } from '@/apis/auth';
-import { getLocalStorage, removeLocalStorage, setLocalStorage } from '@/utils/localStorage';
 import { ACCESS_TOKEN } from '@/constants/localStorage';
 import { ILogin, IProfile } from '@/typing/auth';
+import { getLocalStorage, removeLocalStorage, setLocalStorage } from '@/utils/localStorage';
 
 interface IState {
   token: string | null;

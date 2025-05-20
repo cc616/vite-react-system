@@ -1,23 +1,34 @@
+import '@/styles/index.less';
+import '@ant-design/v5-patch-for-react-19';
+
+import { ConfigProvider } from 'antd';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route,Routes } from 'react-router-dom';
 
-import '@/styles/index.less';
+import Authorized from '@/components/authorized';
+import Login from '@/pages/login';
 
 import App from './app';
-import Login from '@/pages/login';
-import Authorized from '@/components/authorized';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route element={<Authorized />}>
-          <Route path="/*" element={<App />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#0d93ae',
+        },
+      }}
+    >
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Authorized />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/*" element={<App />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ConfigProvider>
   </React.StrictMode>,
 );

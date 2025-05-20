@@ -1,22 +1,21 @@
-import { useEffect, useState } from 'react';
+import { Avatar, Card, Col, Row } from 'antd';
 
-import { Card, Row, Col, Avatar } from 'antd';
-
-import Header from '@/components/header';
-import Content from '@/components/content';
-import UserLogo from '@/assets/user.png';
-import { getProjects } from '@/apis/project';
-import { IProject } from '@/typing/project';
-import { TEAM, TEAM_PROJECT_NAME_MAP, TEAM_NAME_MAP } from '@/constants/team';
-import ReactLogo from '@/assets/team/react.png';
-import VueLogo from '@/assets/team/vue.png';
 import AngularLogo from '@/assets/team/angular.png';
 import AntDesignLogo from '@/assets/team/ant-design.png';
 import BootstrapLogo from '@/assets/team/bootstrap.png';
+import ReactLogo from '@/assets/team/react.png';
 import ViteLogo from '@/assets/team/vite.png';
+import VueLogo from '@/assets/team/vue.png';
+import UserLogo from '@/assets/user.png';
+import Content from '@/components/content';
+import Header from '@/components/header';
+import { TEAM, TEAM_NAME_MAP, TEAM_PROJECT_NAME_MAP } from '@/constants/team';
+import useAuthStore from '@/store/auth';
 
 import styles from './index.module.less';
-import useAuthStore from '@/store/auth';
+import { useEffect, useState } from 'react';
+import { IProject } from '@/typing/project';
+import useProjectStore from '@/store/project';
 
 const TEAM_AVATAR_MAP = {
   [TEAM.REACT]: ReactLogo,
@@ -30,11 +29,10 @@ const TEAM_AVATAR_MAP = {
 const Dashboard = () => {
   const { profile } = useAuthStore();
   const [projects, setProjects] = useState<IProject[]>([]);
+  const { getProjects } = useProjectStore();
 
   useEffect(() => {
-    getProjects().then((data) => {
-      setProjects(data);
-    });
+    getProjects().then(setProjects);
   }, []);
 
   return (

@@ -1,23 +1,35 @@
+import { useEffect } from 'react';
+import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
+
 import Layout from '@/components/layout';
-import { useRoutes, Navigate } from 'react-router-dom';
-import { ROUTE_PATH } from './constants/route'
+import useAuthStore from '@/store/auth';
+
+import { ROUTE_PATH } from './constants/route';
 import { routes } from './routes';
 
-
-const allRoutes: any[] =[
+const layoutRoutes: RouteObject[] = [
   {
-    path: "/",
+    path: '/',
     element: <Navigate to={ROUTE_PATH.DASHBOARD} replace />,
   },
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     children: routes,
   },
 ];
 
 const App = () => {
-  const element = useRoutes(allRoutes);
+  const { token, getProfile } = useAuthStore();
+
+  useEffect(() => {
+    if (token) {
+      getProfile();
+    }
+  }, [token]);
+
+  const element = useRoutes(layoutRoutes);
+
   return <>{element}</>;
 };
 

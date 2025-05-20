@@ -1,6 +1,7 @@
-import Content from '@/components/content';
 import { Button, Select, Space, Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
+
+import Content from '@/components/content';
 
 import styles from './index.module.less';
 

@@ -1,17 +1,16 @@
 import { ROUTE_PATH } from '@/constants/route';
-
 import Dashboard from '@/pages/dashboard';
 import Detail from '@/pages/detail';
-import ResultSuccess from '@/pages/result/success';
-import ResultFailure from '@/pages/result/failure';
 import Exception403 from '@/pages/exception/403';
 import Exception404 from '@/pages/exception/404';
 import Exception500 from '@/pages/exception/500';
+import ResultFailure from '@/pages/result/failure';
+import ResultSuccess from '@/pages/result/success';
+import { NonIndexRouteObject } from 'react-router-dom';
 
-export interface IRoute {
+export interface IRoute extends NonIndexRouteObject {
   title: string;
   path: string;
-  element?: React.FunctionComponent | React.ReactNode;
   children?: IRoute[];
 }
 

@@ -1,5 +1,5 @@
-import { Result, Button, Descriptions, Steps } from 'antd';
 import { DingdingOutlined } from '@ant-design/icons';
+import { Button, Descriptions, Result, Steps } from 'antd';
 
 import Content from '@/components/content';
 

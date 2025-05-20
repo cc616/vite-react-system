@@ -1,30 +1,31 @@
+import { Dropdown, MenuProps } from 'antd';
 import { useMemo } from 'react';
 
-import { Menu, Dropdown } from 'antd';
-
-import styles from './header.module.less';
 import useAuthStore from '@/store/auth';
 
-const MenuItem = Menu.Item;
+import styles from './header.module.less';
 
 const Header = () => {
   const { profile, logout } = useAuthStore();
 
-  const handleLogout = () => {
-    logout();
+  const handleClick: MenuProps['onClick'] = ({ key }) => {
+    if (key === 'LOGOUT') {
+      logout();
+    }
   };
 
-  const menu = useMemo(() => {
-    return (
-      <Menu>
-        <MenuItem onClick={handleLogout}>退出登录</MenuItem>
-      </Menu>
-    );
+  const items = useMemo<MenuProps['items']>(() => {
+    return [
+      {
+        key: 'LOGOUT',
+        label: '退出登录',
+      },
+    ];
   }, []);
 
   return (
     <div className={styles.header}>
-      <Dropdown overlay={menu}>
+      <Dropdown menu={{ items, onClick: handleClick }}>
         <div className={styles.username}>{profile?.username}</div>
       </Dropdown>
     </div>

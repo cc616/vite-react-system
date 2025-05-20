@@ -1,0 +1,11 @@
+{
+  "name": "service-mock",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "ISC",
+  "description": "service mock",
+  "dependencies": {
+    "json-server": "^0.17.4"
+  }
+}

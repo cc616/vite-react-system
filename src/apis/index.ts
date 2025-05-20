@@ -1,9 +1,10 @@
 import { message } from 'antd';
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-import { ACCESS_TOKEN } from '@/constants/localStorage';
-import { getLocalStorage } from '@/utils/localStorage';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+
 import { HTTP_STATUS, HTTP_STATUS_MAP } from '@/constants/http';
+import { ACCESS_TOKEN } from '@/constants/localStorage';
 import useAuthStore from '@/store/auth';
+import { getLocalStorage } from '@/utils/localStorage';
 
 const TIMEOUT = 30000;
 const BASE_URL = 'http://0.0.0.0:3001/api';
@@ -17,7 +18,7 @@ class Http {
       timeout: TIMEOUT,
     });
 
-    this.http.interceptors.request.use((config: AxiosRequestConfig) => {
+    this.http.interceptors.request.use((config) => {
       if (config.url !== '/user/login') {
         config.headers['authorization'] = getLocalStorage(ACCESS_TOKEN);
       }
@@ -28,7 +29,7 @@ class Http {
       ({ data }: AxiosResponse) => {
         return data.data;
       },
-      (error: AxiosError) => {
+      (error: AxiosError<{ code: string }>) => {
         if (error.message === 'Network Error') {
           // TODO: cancel
         }
@@ -37,7 +38,7 @@ class Http {
           const { logout } = useAuthStore.getState();
           logout();
         }
-        const { code } = data || {};
+        const { code } = data || ({} as { code: string });
         const errorMsg = HTTP_STATUS_MAP[status as HTTP_STATUS] || '系统错误，请稍后重试';
         const newError = {
           status,

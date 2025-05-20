@@ -28,38 +28,65 @@
     border: none;
   }
 
-  :global(.ant-menu-sub) {
-    background: #002533;
-  }
+  :global {
 
-  :global(.ant-menu-submenu-title) {
-    &:hover {
+    .ant-menu-sub {
+      background: #002533;
+    }
+
+    .ant-menu-submenu-active {
+      &:active {
+        background-color: #002533;
+      }
+    }
+
+    .ant-menu-submenu-title {
       color: @white-color;
+      &:hover {
+        color: @white-color;
+      }
     }
-  }
 
-  :global(.ant-menu-submenu-selected) {
-    color: @white-color;
-  }
+    .ant-menu-submenu-selected>.ant-menu-submenu-title {
+      color: #c1dde3;
+    }
 
-  :global(.ant-menu-submenu-arrow) {
-    color: @white-color !important;
-  }
+    .ant-menu-submenu-arrow {
+      color: @white-color !important;
+    }
 
-  :global(.ant-menu-item) {
-    width: 100%;
-
-    a {
+    .ant-menu-item {
+      width: 100%;
+      margin: 0;
       color: @white-color;
-    }
 
-    &::after {
-      border: none;
-    }
-  }
+      &:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
+        &:hover {
+          color: @white-color;
+        }
+      }
 
-  :global(.ant-menu-item-selected) {
-    background: #04739c !important;
+      &:hover {
+        background-color: #4ed4f4;
+      }
+  
+      a {
+        color: @white-color;
+
+        &:hover {
+          color: @white-color;
+        }
+      }
+  
+      &::after {
+        border: none;
+      }
+    }
+  
+    .ant-menu-item-selected {
+      color: @white-color;
+      background: #04739c !important;
+    }
   }
 }
 

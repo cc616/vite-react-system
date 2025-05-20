@@ -1,26 +1,26 @@
+import { Button, Form, Input, message } from 'antd';
 import { useState } from 'react';
 
-import { Button, Form, Input, message } from 'antd';
-
 import logo from '@/assets/favicon.svg';
+import useAuthStore from '@/store/auth';
 import { ILogin } from '@/typing/auth';
 
 import styles from './index.module.less';
-import useAuthStore from '@/store/auth';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuthStore();
 
-  const handleLogin = (values: ILogin) => {
+  const handleLogin = async (values: ILogin) => {
     setLoading(true);
-    login(values)
-      .catch(() => {
-        message.error('账号密码错误');
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+
+    try {
+      await login(values);
+    } catch (error) {
+      message.error('账号密码错误');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

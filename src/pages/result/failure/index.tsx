@@ -1,5 +1,5 @@
-import { Result, Button } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
+import { Button, Result } from 'antd';
 
 import Content from '@/components/content';
 
