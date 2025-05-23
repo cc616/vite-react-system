@@ -10,7 +10,7 @@ import { routes } from './routes';
 const layoutRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to={ROUTE_PATH.DASHBOARD} replace />,
+    element: <Navigate to={ROUTE_PATH.ANALYSIS} replace />,
   },
   {
     path: '/',
@@ -20,7 +20,7 @@ const layoutRoutes: RouteObject[] = [
 ];
 
 const App = () => {
-  const { token, getProfile } = useAuthStore();
+  const { token, getProfile, profile } = useAuthStore();
 
   useEffect(() => {
     if (token) {
@@ -29,6 +29,11 @@ const App = () => {
   }, [token]);
 
   const element = useRoutes(layoutRoutes);
+
+  if (!profile) {
+    // TODO: 加载动画
+    return null;
+  }
 
   return <>{element}</>;
 };

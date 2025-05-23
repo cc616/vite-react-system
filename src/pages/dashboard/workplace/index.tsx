@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { Avatar, Card, Col, Row } from 'antd';
 
 import AngularLogo from '@/assets/team/angular.png';
@@ -11,11 +12,9 @@ import Content from '@/components/content';
 import Header from '@/components/header';
 import { TEAM, TEAM_NAME_MAP, TEAM_PROJECT_NAME_MAP } from '@/constants/team';
 import useAuthStore from '@/store/auth';
+import useProjectStore from '@/store/project';
 
 import styles from './index.module.less';
-import { useEffect, useState } from 'react';
-import { IProject } from '@/typing/project';
-import useProjectStore from '@/store/project';
 
 const TEAM_AVATAR_MAP = {
   [TEAM.REACT]: ReactLogo,
@@ -28,12 +27,13 @@ const TEAM_AVATAR_MAP = {
 
 const Workplace = () => {
   const { profile } = useAuthStore();
-  const [projects, setProjects] = useState<IProject[]>([]);
   const { getProjects } = useProjectStore();
 
-  useEffect(() => {
-    getProjects().then(setProjects);
-  }, []);
+  const { data } = useQuery({
+    queryKey: ['project'],
+    queryFn: getProjects,
+    initialData: [],
+  });
 
   return (
     <>
@@ -50,7 +50,7 @@ const Workplace = () => {
         <Row gutter={24}>
           <Col span={16}>
             <Card title="进行中的项目">
-              {projects.map((item) => (
+              {data.map((item) => (
                 <Card.Grid key={item.id} className={styles.projectCardGrid}>
                   <Card.Meta
                     description={item.description}

@@ -1,10 +1,9 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import * as echarts from 'echarts/core';
-import { GeoComponent, TooltipComponent, VisualMapComponent } from 'echarts/components';
 import { EffectScatterChart, LinesChart } from 'echarts/charts';
+import { GeoComponent, TooltipComponent, VisualMapComponent } from 'echarts/components';
+import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
-import useDashboardStore from '@/store/dashboard';
 import { ECBasicOption } from 'echarts/types/dist/shared';
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 
 echarts.use([GeoComponent, TooltipComponent, LinesChart, CanvasRenderer, VisualMapComponent, EffectScatterChart]);
 
@@ -14,7 +13,6 @@ interface EchartsProps {
   style?: React.CSSProperties;
   className?: string;
   option: EchartsOption;
-  needRegisterMap?: boolean;
 }
 
 export type EchartsRef = {
@@ -22,17 +20,11 @@ export type EchartsRef = {
 };
 
 const Echarts = (props: EchartsProps, ref: React.Ref<EchartsRef>) => {
-  const { style, className, option, needRegisterMap } = props;
+  const { style, className, option } = props;
   const chartRef = useRef<HTMLDivElement>(null);
   const chartInstance = useRef<echarts.ECharts | null>(null);
-  const { getChinaGeo } = useDashboardStore();
 
   const initChart = async () => {
-    if (needRegisterMap) {
-      const res = await getChinaGeo();
-      echarts.registerMap('china', res);
-    }
-
     if (chartInstance.current) {
       chartInstance.current.setOption(option);
     } else {

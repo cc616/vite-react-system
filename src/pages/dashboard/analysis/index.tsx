@@ -1,5 +1,7 @@
-import Content from '@/components/content';
 import { Col, Row } from 'antd';
+
+import Content from '@/components/content';
+
 import FlyLineChart from './flyLineChart';
 
 const Analysis = () => {

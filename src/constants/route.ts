@@ -6,6 +6,7 @@ export const ROUTE_PATH = {
   FORM: '/form',
   BASIC_FORM: '/form/basic-form',
   LIST: '/list',
+  TABLE_LIST: '/list/table-list',
   DETAIL: '/detail',
   RESULT: '/result',
   RESULT_SUCCESS: '/result/success',

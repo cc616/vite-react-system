@@ -1,10 +1,10 @@
-export const setLocalStorage = (key: string, value: any): void => {
+export const setLocalStorage = (key: string, value: unknown): void => {
   if (window.localStorage) {
     window.localStorage.setItem(key, JSON.stringify(value));
   }
 };
 
-export const getLocalStorage = <T = any>(key: string): T | null => {
+export const getLocalStorage = <T = unknown>(key: string): T | null => {
   if (window.localStorage) {
     const value = window.localStorage.getItem(key) || null;
     try {

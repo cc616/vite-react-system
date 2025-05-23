@@ -23,35 +23,38 @@ server.use(jsonServer.bodyParser);
 server.use(middlewares);
 
 server.use((req, res, next) => {
-  if (req.url === '/api/user/login') {
-    const { username, password } = req.body;
-    role = username.toLocaleUpperCase();
-    if ((username === 'admin' || username === 'user') && password === 'vite.react') {
+  const responseTime = Math.floor(Math.random() * 1000) + 200;
+  setTimeout(() => {
+    if (req.url === '/api/user/login') {
+      const { username, password } = req.body;
+      role = username.toLocaleUpperCase();
+      if ((username === 'admin' || username === 'user') && password === 'vite.react') {
+        return res.jsonp({
+          code: 'SUCCESS',
+          data: createToken(req.body),
+          message: 'success',
+        });
+      }
+
+      return res.sendStatus(401);
+    }
+    if (!isAuthorized(req.headers['authorization'])) {
+      return res.status(401).jsonp({
+        code: 'UNAUTHORIZED',
+        message: 'unauthorized',
+      });
+    }
+
+    if (req.url === '/api/user/profile') {
       return res.jsonp({
         code: 'SUCCESS',
-        data: createToken(req.body),
+        data: { username: '吴彦祖', role, id: '1111', position: '高级搬砖专家' },
         message: 'success',
       });
     }
 
-    return res.sendStatus(401);
-  }
-  if (!isAuthorized(req.headers['authorization'])) {
-    return res.status(401).jsonp({
-      code: 'UNAUTHORIZED',
-      message: 'unauthorized',
-    });
-  }
-
-  if (req.url === '/api/user/profile') {
-    return res.jsonp({
-      code: 'SUCCESS',
-      data: { username: '吴彦祖', role, id: '1111', position: '高级搬砖专家' },
-      message: 'success',
-    });
-  }
-
-  next();
+    next();
+  }, responseTime);
 });
 
 router.render = (req, res) => {
@@ -67,6 +70,7 @@ server.use(
     '/api/': '/',
     '/api/user/list': '/api/userList',
     '/api/project': '/api/project',
+    '/api/list/table-list': '/api/tableList',
   }),
 );
 server.use('/api', router);

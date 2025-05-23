@@ -2,9 +2,7 @@ import { message } from 'antd';
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { HTTP_STATUS, HTTP_STATUS_MAP } from '@/constants/http';
-import { ACCESS_TOKEN } from '@/constants/localStorage';
 import useAuthStore from '@/store/auth';
-import { getLocalStorage } from '@/utils/localStorage';
 
 const TIMEOUT = 30000;
 const BASE_URL = 'http://0.0.0.0:3001/api';
@@ -20,7 +18,8 @@ class Http {
 
     this.http.interceptors.request.use((config) => {
       if (config.url !== '/user/login') {
-        config.headers['authorization'] = getLocalStorage(ACCESS_TOKEN);
+        const { token } = useAuthStore.getState();
+        config.headers['authorization'] = token;
       }
       return config;
     });

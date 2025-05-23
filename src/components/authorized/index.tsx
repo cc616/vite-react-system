@@ -12,7 +12,7 @@ const Authorized = () => {
 
   if (isLogin) {
     if (pathname === ROUTE_PATH.LOGIN) {
-      return <Navigate to={ROUTE_PATH.DASHBOARD} replace />;
+      return <Navigate to={ROUTE_PATH.ANALYSIS} replace />;
     }
     return <Outlet />;
   }

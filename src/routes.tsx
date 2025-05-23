@@ -1,13 +1,15 @@
+import { NonIndexRouteObject } from 'react-router-dom';
+
 import { ROUTE_PATH } from '@/constants/route';
-import Workplace from '@/pages/dashboard/workplace';
 import Analysis from '@/pages/dashboard/analysis';
-import Detail from '@/pages/detail';
+import Workplace from '@/pages/dashboard/workplace';
 import Exception403 from '@/pages/exception/403';
 import Exception404 from '@/pages/exception/404';
 import Exception500 from '@/pages/exception/500';
+import BasicForm from '@/pages/form/basicForm';
+import TableList from '@/pages/list/tableList';
 import ResultFailure from '@/pages/result/failure';
 import ResultSuccess from '@/pages/result/success';
-import { NonIndexRouteObject } from 'react-router-dom';
 
 export interface IRoute extends NonIndexRouteObject {
   title: string;
@@ -38,8 +40,19 @@ export const routes: IRoute[] = [
     children: [
       {
         path: ROUTE_PATH.BASIC_FORM,
-        element: <Detail />,
+        element: <BasicForm />,
         title: '基础表单',
+      },
+    ],
+  },
+  {
+    title: '列表页',
+    path: ROUTE_PATH.LIST,
+    children: [
+      {
+        path: ROUTE_PATH.TABLE_LIST,
+        element: <TableList />,
+        title: '查询表格',
       },
     ],
   },

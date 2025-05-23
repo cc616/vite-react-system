@@ -16,7 +16,7 @@ const Login = () => {
 
     try {
       await login(values);
-    } catch (error) {
+    } catch (_error) {
       message.error('账号密码错误');
     } finally {
       setLoading(false);

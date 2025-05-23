@@ -1,6 +1,8 @@
+import * as echarts from 'echarts/core';
 import { useEffect, useRef, useState } from 'react';
 
 import Echarts, { EchartsOption, EchartsRef } from '@/components/echarts';
+import useDashboardStore from '@/store/dashboard';
 
 const geoCoordMap: Record<string, [number, number]> = {
   北京: [116.4551, 40.2539],
@@ -27,15 +29,19 @@ const regionData = [
 const FlyLineChart = () => {
   const chartRef = useRef<EchartsRef>(null);
   const [option, setOption] = useState<EchartsOption>({});
+  const { getChinaGeo } = useDashboardStore();
 
-  useEffect(() => {
+  const handleLoad = async () => {
+    const chinaGeo = await getChinaGeo();
+    echarts.registerMap('china', chinaGeo);
+
     const convertFlyLineData = flyLineData.map((item) => ({
       fromName: item.from,
       toName: item.to,
       coords: [geoCoordMap[item.from], geoCoordMap[item.to]],
       value: item.value,
     }));
-    let data: EchartsOption = {
+    const data: EchartsOption = {
       backgroundColor: {
         type: 'linear',
         x: 0,
@@ -138,7 +144,7 @@ const FlyLineChart = () => {
             formatter: '{b}',
             color: '#fff',
           },
-          symbolSize: (val: any[]) => val[2] / 10,
+          symbolSize: (val: number[]) => val[2] / 10,
           itemStyle: {
             color: '#f4e925',
           },
@@ -159,7 +165,7 @@ const FlyLineChart = () => {
     }
     flyTimer = setInterval(() => {
       const line = flyLineData[flyIndex];
-      // @ts-ignore
+      // @ts-expect-error: 有这个值
       data.series![1].data = [
         {
           fromName: line.from,
@@ -171,11 +177,15 @@ const FlyLineChart = () => {
       setOption(data);
       flyIndex = (flyIndex + 1) % flyLineData.length;
     }, 6000);
+  };
+
+  useEffect(() => {
+    handleLoad();
   }, []);
 
   return (
     <div style={{ width: '100%', height: '600px' }}>
-      <Echarts needRegisterMap option={option} ref={chartRef} />
+      <Echarts option={option} ref={chartRef} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { Menu, MenuProps } from 'antd';
-import { first,last } from 'lodash';
+import { first, last } from 'lodash';
 import { MenuInfo } from 'rc-menu/lib/interface';
 import { useCallback, useMemo, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
