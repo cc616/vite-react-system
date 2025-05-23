@@ -6,6 +6,7 @@
   "license": "ISC",
   "description": "service mock",
   "dependencies": {
+    "@faker-js/faker": "^9.8.0",
     "json-server": "^0.17.4"
   }
 }

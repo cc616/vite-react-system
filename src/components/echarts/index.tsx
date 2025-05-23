@@ -3,7 +3,7 @@ import { GeoComponent, TooltipComponent, VisualMapComponent } from 'echarts/comp
 import * as echarts from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
 import { ECBasicOption } from 'echarts/types/dist/shared';
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
 
 echarts.use([GeoComponent, TooltipComponent, LinesChart, CanvasRenderer, VisualMapComponent, EffectScatterChart]);
 
@@ -24,7 +24,7 @@ const Echarts = (props: EchartsProps, ref: React.Ref<EchartsRef>) => {
   const chartRef = useRef<HTMLDivElement>(null);
   const chartInstance = useRef<echarts.ECharts | null>(null);
 
-  const initChart = async () => {
+  const initChart = useCallback(async () => {
     if (chartInstance.current) {
       chartInstance.current.setOption(option);
     } else {
@@ -38,11 +38,11 @@ const Echarts = (props: EchartsProps, ref: React.Ref<EchartsRef>) => {
       chartInstance.current?.dispose();
       window.removeEventListener('resize', handleResize);
     };
-  };
+  }, [option]);
 
   useEffect(() => {
     initChart();
-  }, [option]);
+  }, [option, initChart]);
 
   const handleResize = () => {
     chartInstance.current?.resize({

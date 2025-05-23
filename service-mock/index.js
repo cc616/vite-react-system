@@ -1,12 +1,16 @@
 import jsonServer from 'json-server';
-import db from './db.js';
+
+import { getTableList } from './list/index.js';
+import { getUserAccount, login } from './user/index.js';
+
+import wrapResponse from './utils/response.js';
 
 const host = '0.0.0.0';
 const port = '3001';
 const mockToken = 'Bearer mock jwt';
 
 const server = jsonServer.create();
-const router = jsonServer.router(db());
+const router = jsonServer.router({});
 const middlewares = jsonServer.defaults();
 
 const createToken = () => {
@@ -17,62 +21,27 @@ const isAuthorized = (token) => {
   return token === mockToken;
 };
 
-let role;
-
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
 
 server.use((req, res, next) => {
   const responseTime = Math.floor(Math.random() * 1000) + 200;
   setTimeout(() => {
-    if (req.url === '/api/user/login') {
-      const { username, password } = req.body;
-      role = username.toLocaleUpperCase();
-      if ((username === 'admin' || username === 'user') && password === 'vite.react') {
-        return res.jsonp({
-          code: 'SUCCESS',
-          data: createToken(req.body),
-          message: 'success',
-        });
-      }
-
-      return res.sendStatus(401);
-    }
-    if (!isAuthorized(req.headers['authorization'])) {
+    if (!isAuthorized(req.headers['authorization']) && req.url !== '/api/user/login') {
       return res.status(401).jsonp({
         code: 'UNAUTHORIZED',
         message: 'unauthorized',
       });
     }
-
-    if (req.url === '/api/user/profile') {
-      return res.jsonp({
-        code: 'SUCCESS',
-        data: { username: '吴彦祖', role, id: '1111', position: '高级搬砖专家' },
-        message: 'success',
-      });
-    }
-
     next();
   }, responseTime);
 });
 
-router.render = (req, res) => {
-  res.jsonp({
-    code: 'SUCCESS',
-    data: res.locals.data,
-    message: 'success',
-  });
-};
+server.post('/api/user/login', login);
+server.get('/api/user/profile', wrapResponse(getUserAccount));
 
-server.use(
-  jsonServer.rewriter({
-    '/api/': '/',
-    '/api/user/list': '/api/userList',
-    '/api/project': '/api/project',
-    '/api/list/table-list': '/api/tableList',
-  }),
-);
+server.get('/api/list/table-list', wrapResponse(getTableList));
+
 server.use('/api', router);
 
 server.listen(

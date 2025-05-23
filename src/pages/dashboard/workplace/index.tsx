@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Avatar, Card, Col, Row } from 'antd';
+import { Avatar, Card, Col, Row, Skeleton } from 'antd';
 
 import AngularLogo from '@/assets/team/angular.png';
 import AntDesignLogo from '@/assets/team/ant-design.png';
@@ -29,7 +29,7 @@ const Workplace = () => {
   const { profile } = useAuthStore();
   const { getProjects } = useProjectStore();
 
-  const { data } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ['project'],
     queryFn: getProjects,
     initialData: [],
@@ -50,23 +50,27 @@ const Workplace = () => {
         <Row gutter={24}>
           <Col span={16}>
             <Card title="进行中的项目">
-              {data.map((item) => (
-                <Card.Grid key={item.id} className={styles.projectCardGrid}>
-                  <Card.Meta
-                    description={item.description}
-                    title={
-                      <div className={styles.projectCardTitle}>
-                        <Avatar size={24} src={TEAM_AVATAR_MAP[item.team]} />
-                        <a>{TEAM_PROJECT_NAME_MAP[item.team]}</a>
-                      </div>
-                    }
-                  />
-                  <div className={styles.projectCardFooter}>
-                    <a>{TEAM_NAME_MAP[item.team]}</a>
-                    <span>{item.publishedAt}</span>
-                  </div>
-                </Card.Grid>
-              ))}
+              {isFetching ? (
+                <Skeleton active />
+              ) : (
+                data.map((item) => (
+                  <Card.Grid key={item.id} className={styles.projectCardGrid}>
+                    <Card.Meta
+                      description={item.description}
+                      title={
+                        <div className={styles.projectCardTitle}>
+                          <Avatar size={24} src={TEAM_AVATAR_MAP[item.team]} />
+                          <a>{TEAM_PROJECT_NAME_MAP[item.team]}</a>
+                        </div>
+                      }
+                    />
+                    <div className={styles.projectCardFooter}>
+                      <a>{TEAM_NAME_MAP[item.team]}</a>
+                      <span>{item.publishedAt}</span>
+                    </div>
+                  </Card.Grid>
+                ))
+              )}
             </Card>
           </Col>
           <Col span={8}>

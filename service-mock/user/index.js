@@ -1,14 +1,17 @@
-export default [
-  {
-    id: '1',
-    name: '张三',
-    age: 18,
-    address: '成都高新区',
-  },
-  {
-    id: '2',
-    name: '李四',
-    age: 20,
-    address: '成都武侯区',
-  },
-];
+import { formatResponse } from '../utils/response.js';
+
+let role;
+
+export const getUserAccount = () => {
+  return { username: '吴彦祖', role, id: '1111', position: '高级搬砖专家' };
+};
+
+export const login = (req, res) => {
+  const { username, password } = req.body;
+  role = username.toLocaleUpperCase();
+  if ((username === 'admin' || username === 'user') && password === 'vite.react') {
+    return res.jsonp(formatResponse(createToken(req.body)));
+  }
+
+  return res.sendStatus(401);
+};

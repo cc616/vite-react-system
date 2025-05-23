@@ -45,6 +45,9 @@
       &:hover {
         color: @white-color;
       }
+      &:active {
+        background-color: inherit !important;
+      }
     }
 
     .ant-menu-submenu-selected>.ant-menu-submenu-title {
@@ -63,11 +66,8 @@
       &:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
         &:hover {
           color: @white-color;
+          background-color: #0583b167 !important;
         }
-      }
-
-      &:hover {
-        background-color: #4ed4f4;
       }
   
       a {
@@ -80,6 +80,10 @@
   
       &::after {
         border: none;
+      }
+
+      & + .ant-menu-item {
+        margin-top: 4px;
       }
     }
   

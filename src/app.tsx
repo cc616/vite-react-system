@@ -26,7 +26,7 @@ const App = () => {
     if (token) {
       getProfile();
     }
-  }, [token]);
+  }, [token, getProfile]);
 
   const element = useRoutes(layoutRoutes);
 

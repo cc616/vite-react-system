@@ -1,5 +1,5 @@
 import * as echarts from 'echarts/core';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Echarts, { EchartsOption, EchartsRef } from '@/components/echarts';
 import useDashboardStore from '@/store/dashboard';
@@ -31,7 +31,7 @@ const FlyLineChart = () => {
   const [option, setOption] = useState<EchartsOption>({});
   const { getChinaGeo } = useDashboardStore();
 
-  const handleLoad = async () => {
+  const handleLoad = useCallback(async () => {
     const chinaGeo = await getChinaGeo();
     echarts.registerMap('china', chinaGeo);
 
@@ -177,11 +177,11 @@ const FlyLineChart = () => {
       setOption(data);
       flyIndex = (flyIndex + 1) % flyLineData.length;
     }, 6000);
-  };
+  }, [getChinaGeo]);
 
   useEffect(() => {
     handleLoad();
-  }, []);
+  }, [handleLoad]);
 
   return (
     <div style={{ width: '100%', height: '600px' }}>
