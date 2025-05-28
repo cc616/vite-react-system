@@ -7,6 +7,7 @@ import Exception403 from '@/pages/exception/403';
 import Exception404 from '@/pages/exception/404';
 import Exception500 from '@/pages/exception/500';
 import BasicForm from '@/pages/form/basicForm';
+import StepForm from '@/pages/form/stepForm';
 import TableList from '@/pages/list/tableList';
 import ResultFailure from '@/pages/result/failure';
 import ResultSuccess from '@/pages/result/success';
@@ -42,6 +43,11 @@ export const routes: IRoute[] = [
         path: ROUTE_PATH.BASIC_FORM,
         element: <BasicForm />,
         title: '基础表单',
+      },
+      {
+        path: ROUTE_PATH.STEP_FORM,
+        element: <StepForm />,
+        title: '分步表单',
       },
     ],
   },

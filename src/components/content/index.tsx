@@ -9,7 +9,7 @@ interface IProps {
   padding?: number | boolean;
 }
 
-const Content = ({ children, bgWhite = false, padding, className }: IProps) => {
+const Content = ({ children, bgWhite = false, padding = 0, className }: IProps) => {
   return (
     <div
       className={cls(styles.content, { [styles.white]: bgWhite }, className)}

@@ -1,0 +1,43 @@
+@import '@/styles/variable.less';
+
+.projectCard {
+  &Grid {
+    :global(.ant-card-meta-description) {
+      height: 44px;
+    }
+  }
+  &Title {
+    color: @text-title-color;
+    font-size: @font-size-base;
+    display: flex;
+    font-weight: normal;
+
+    span {
+      display: block;
+      margin-right: @margin-sm;
+    }
+  }
+
+  &Footer {
+    margin-top: @margin-xs;
+    display: flex;
+    justify-content: space-between;
+    color: @text-gray-color;
+    font-size: @font-size-sm;
+    line-height: 20px;
+  }
+}
+
+.teamCard {
+  &Link {
+    display: block;
+    height: 24px;
+    margin: @margin-sm 0;
+    color: @text-title-color;
+    transition: all .3s;
+
+    span + span {
+      margin-left: @margin-xs;
+    }
+  }
+}

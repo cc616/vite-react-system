@@ -2,7 +2,7 @@ import jsonServer from 'json-server';
 
 import { getTableList } from './list/index.js';
 import { getProjects } from './project/index.js';
-import { getUserAccount, login } from './user/index.js';
+import { getUserProfile, login } from './user/index.js';
 
 import wrapResponse from './utils/response.js';
 
@@ -13,10 +13,6 @@ const mockToken = 'Bearer mock jwt';
 const server = jsonServer.create();
 const router = jsonServer.router({});
 const middlewares = jsonServer.defaults();
-
-const createToken = () => {
-  return mockToken;
-};
 
 const isAuthorized = (token) => {
   return token === mockToken;
@@ -39,7 +35,7 @@ server.use((req, res, next) => {
 });
 
 server.post('/api/user/login', login);
-server.get('/api/user/profile', wrapResponse(getUserAccount));
+server.get('/api/user/profile', wrapResponse(getUserProfile));
 
 server.get('/api/list/table-list', wrapResponse(getTableList));
 server.get('/api/project', wrapResponse(getProjects));

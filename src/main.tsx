@@ -1,9 +1,10 @@
 import '@/styles/index.less';
 import '@ant-design/v5-patch-for-react-19';
-import 'dayjs/locale/zh-cn'; // import locale
+import 'dayjs/locale/zh-cn';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ConfigProvider } from 'antd';
+import locale from 'antd/locale/zh_CN';
 import dayjs from 'dayjs';
 import isLeapYear from 'dayjs/plugin/isLeapYear'; // import plugin
 import React from 'react';
@@ -31,6 +32,7 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ConfigProvider
+        locale={locale}
         theme={{
           token: {
             colorPrimary: '#0d93ae',

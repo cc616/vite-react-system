@@ -5,6 +5,7 @@ export const ROUTE_PATH = {
   WORKPLACE: '/dashboard/workplace',
   FORM: '/form',
   BASIC_FORM: '/form/basic-form',
+  STEP_FORM: '/form/step-form',
   LIST: '/list',
   TABLE_LIST: '/list/table-list',
   DETAIL: '/detail',

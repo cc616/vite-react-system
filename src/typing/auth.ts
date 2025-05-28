@@ -10,4 +10,9 @@ export interface IProfile {
   username: string;
   role: ROLE;
   position: string;
+  department: string;
+  projectCount: number;
+  projectVisitCount: number;
+  teamTotal: 24;
+  teamRanking: 8;
 }

@@ -1,9 +1,20 @@
+import { simpleFaker } from '@faker-js/faker';
 import { formatResponse } from '../utils/response.js';
 
 let role;
 
-export const getUserAccount = () => {
-  return { username: '吴彦祖', role, id: '1111', position: '高级搬砖专家' };
+export const getUserProfile = () => {
+  return {
+    username: '吴彦祖',
+    role,
+    id: simpleFaker.string.uuid(),
+    position: '高级搬砖专家',
+    department: '后台管理系统体验技术部',
+    projectCount: 56,
+    projectVisitCount: 2123,
+    teamTotal: 24,
+    teamRanking: 8,
+  };
 };
 
 export const login = (req, res) => {
