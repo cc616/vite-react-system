@@ -68,21 +68,22 @@ const Layout = () => {
   }, []);
   return (
     <div className={styles.layout}>
-      <div className={styles.sider}>
-        <div className={styles.logo}>vite react system</div>
-        <Menu
-          className={styles.menus}
-          openKeys={openKeys}
-          selectedKeys={[selectedKey]}
-          onOpenChange={handleOpenChange}
-          onClick={handleChange}
-          mode="inline"
-          items={menuItems}
-        />
-      </div>
+      <Header />
       <div className={styles.container}>
-        <Header />
-        <Outlet />
+        <aside className={styles.sider}>
+          <Menu
+            className={styles.menus}
+            openKeys={openKeys}
+            selectedKeys={[selectedKey]}
+            onOpenChange={handleOpenChange}
+            onClick={handleChange}
+            mode="inline"
+            items={menuItems}
+          />
+        </aside>
+        <main className={styles.main}>
+          <Outlet />
+        </main>
       </div>
     </div>
   );

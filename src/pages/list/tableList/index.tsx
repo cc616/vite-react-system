@@ -83,29 +83,27 @@ const TableList = () => {
   };
 
   return (
-    <Content bgWhite>
-      <div className={styles.wrapper}>
-        <Select className={styles.select} defaultValue={'ALL'}>
-          <Select.Option value="ALL">All</Select.Option>
-          <Select.Option value="jack">Jack</Select.Option>
-          <Select.Option value="lucy">Lucy</Select.Option>
-        </Select>
-        <Table
-          columns={columns}
-          dataSource={list}
-          loading={isFetching}
-          rowKey="id"
-          pagination={{
-            current: page,
-            pageSize,
-            pageSizeOptions: ['10', '20', '50'],
-            showTotal: (total) => `共 ${total} 条`,
-            total,
-            onChange: handlePageChange,
-            onShowSizeChange: handlePageSizeChange,
-          }}
-        />
-      </div>
+    <Content bgWhite padding>
+      <Select className={styles.select} defaultValue={'ALL'}>
+        <Select.Option value="ALL">All</Select.Option>
+        <Select.Option value="jack">Jack</Select.Option>
+        <Select.Option value="lucy">Lucy</Select.Option>
+      </Select>
+      <Table
+        columns={columns}
+        dataSource={list}
+        loading={isFetching}
+        rowKey="id"
+        pagination={{
+          current: page,
+          pageSize,
+          pageSizeOptions: ['10', '20', '50'],
+          showTotal: (total) => `共 ${total} 条`,
+          total,
+          onChange: handlePageChange,
+          onShowSizeChange: handlePageSizeChange,
+        }}
+      />
     </Content>
   );
 };

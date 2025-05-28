@@ -1,4 +1,4 @@
-export default [
+const allProjects = [
   {
     id: '10001',
     team: 'REACT',
@@ -36,3 +36,7 @@ export default [
     publishedAt: '5年前',
   },
 ];
+
+export const getProjects = (req, res) => {
+  return allProjects;
+};

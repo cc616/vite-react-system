@@ -25,6 +25,7 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
+      <div className={styles.logo}>vite react system</div>
       <Dropdown menu={{ items, onClick: handleClick }}>
         <div className={styles.username}>{profile?.username}</div>
       </Dropdown>
