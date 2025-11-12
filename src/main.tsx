@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 import isLeapYear from 'dayjs/plugin/isLeapYear'; // import plugin
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Authorized from '@/components/authorized';
 import Login from '@/pages/login';
@@ -40,7 +40,7 @@ root.render(
           },
         }}
       >
-        <BrowserRouter basename="/vite-react-system">
+        <HashRouter basename="/">
           <Routes>
             <Route element={<Authorized />}>
               <Route path="/login" element={<Login />} />
@@ -48,7 +48,7 @@ root.render(
               <Route path="/*" element={<App />} />
             </Route>
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </ConfigProvider>
     </QueryClientProvider>
   </React.StrictMode>,

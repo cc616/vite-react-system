@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const getChinaGeo = async () => {
-  const res = await axios.get('https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=100000_full');
+  const res = await axios.get('/vite-react-system/china.json');
   return res.data;
 };
