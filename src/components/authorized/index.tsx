@@ -12,7 +12,7 @@ const Authorized = () => {
 
   if (isLogin) {
     if (pathname === ROUTE_PATH.LOGIN) {
-      return <Navigate to='/ai' replace />;
+      return <Navigate to={ROUTE_PATH.ANALYSIS} replace />;
     }
     return <Outlet />;
   }

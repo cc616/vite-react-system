@@ -25,7 +25,6 @@ class Http {
       if (!isDev) {
         config.url = `${config.url}.json`;
         config.method = 'get';
-        console.warn('Mock Request URL:', config);
       }
 
       return config;
