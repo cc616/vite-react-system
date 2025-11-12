@@ -25,7 +25,7 @@ type IStore = IState & IActions;
 
 const useAuthStore = create(
   immer<IStore>((set) => ({
-    token: initialToken,
+    token: initialToken ?? 'mock-token',
     profile: null,
     login: async (payload) => {
       const token = await login(payload);

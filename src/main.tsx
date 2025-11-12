@@ -13,6 +13,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Authorized from '@/components/authorized';
 import Login from '@/pages/login';
+import AI from '@/pages/test/ai';
 
 import App from './app';
 
@@ -39,10 +40,11 @@ root.render(
           },
         }}
       >
-        <BrowserRouter>
+        <BrowserRouter basename="/vite-react-system">
           <Routes>
             <Route element={<Authorized />}>
               <Route path="/login" element={<Login />} />
+              <Route path="/ai" element={<AI />} />
               <Route path="/*" element={<App />} />
             </Route>
           </Routes>

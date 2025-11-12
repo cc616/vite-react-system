@@ -17,6 +17,11 @@ export const getUserProfile = () => {
   };
 };
 
+const mockToken = 'Bearer mock jwt';
+const createToken = () => {
+  return mockToken;
+};
+
 export const login = (req, res) => {
   const { username, password } = req.body;
   role = username.toLocaleUpperCase();

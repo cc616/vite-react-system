@@ -1,0 +1,71 @@
+@import "@/styles/variable.less";
+
+.container {
+  padding: 0 24px 24px 24px;
+  height: 100%;
+  overflow: auto;
+
+  img {
+    width: 100%;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
+}
+
+.item {
+  & + .item {
+    margin-top: 16px;
+  }
+}
+
+.title {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.error {
+  color: @error-color;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  :global {
+    .ant-checkbox-wrapper-disabled {
+      .ant-checkbox-label {
+        color: inherit !important;
+      }
+      .ant-checkbox-inner {
+        background-color: inherit !important;
+        border-color: inherit !important;
+
+        &::after {
+          border-color: inherit !important;
+        }
+      }
+    }
+  }
+}
+
+.explanations {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.bold {
+  font-size: 16px;
+  font-weight: 500;
+}
