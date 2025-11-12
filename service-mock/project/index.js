@@ -37,6 +37,6 @@ const allProjects = [
   },
 ];
 
-export const getProjects = (req, res) => {
+export const getOngoingProjects = (req, res) => {
   return allProjects;
 };

@@ -25,7 +25,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'yarn' # 添加缓存
+          cache: 'yarn'
+
+      - name: Install service-mock deps
+        working-directory: ./service-mock
+        run: yarn --frozen-lockfile
+
+      - name: Setup Mock Data
+        working-directory: ./service-mock
+        run: yarn build
 
       - name: Install dependencies
         run: yarn --frozen-lockfile

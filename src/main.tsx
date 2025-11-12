@@ -12,8 +12,8 @@ import { createRoot } from 'react-dom/client';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Authorized from '@/components/authorized';
+import AI from '@/pages/exam/ai';
 import Login from '@/pages/login';
-import AI from '@/pages/test/ai';
 
 import App from './app';
 

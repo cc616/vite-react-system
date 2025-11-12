@@ -18,7 +18,7 @@ export const getUserProfile = () => {
 };
 
 const mockToken = 'Bearer mock jwt';
-const createToken = () => {
+export const createToken = () => {
   return mockToken;
 };
 

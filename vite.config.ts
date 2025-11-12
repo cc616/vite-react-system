@@ -8,6 +8,13 @@ export default defineConfig({
   server: {
     host: true,
     port: 8080,
+    proxy: {
+      '/vite-react-system/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/vite-react-system/, ''),
+      },
+    },
   },
   resolve: {
     alias: {

@@ -1,0 +1,5 @@
+{
+  "code": "SUCCESS",
+  "message": "success",
+  "data": "Bearer mock jwt"
+}

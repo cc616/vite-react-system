@@ -1,7 +1,7 @@
 import jsonServer from 'json-server';
 
 import { getTableList } from './list/index.js';
-import { getProjects } from './project/index.js';
+import { getOngoingProjects } from './project/index.js';
 import { getUserProfile, login } from './user/index.js';
 
 import wrapResponse from './utils/response.js';
@@ -38,7 +38,7 @@ server.post('/api/user/login', login);
 server.get('/api/user/profile', wrapResponse(getUserProfile));
 
 server.get('/api/list/table-list', wrapResponse(getTableList));
-server.get('/api/project', wrapResponse(getProjects));
+server.get('/api/project/ongoing', wrapResponse(getOngoingProjects));
 
 server.use('/api', router);
 

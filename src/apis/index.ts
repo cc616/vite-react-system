@@ -4,8 +4,9 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { HTTP_STATUS, HTTP_STATUS_MAP } from '@/constants/http';
 import useAuthStore from '@/store/auth';
 
+const isDev = import.meta.env.DEV;
 const TIMEOUT = 30000;
-const BASE_URL = 'http://0.0.0.0:3001/api';
+const BASE_URL = '/vite-react-system/api/';
 
 class Http {
   private http: AxiosInstance;
@@ -21,6 +22,10 @@ class Http {
         const { token } = useAuthStore.getState();
         config.headers['authorization'] = token;
       }
+      if (!isDev) {
+        config.url = `${config.url}.json`;
+      }
+
       return config;
     });
 
